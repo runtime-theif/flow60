@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  flow60:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    volumes:
+      # Mount the DB file to persist data across container restarts
+      - ./flow60-local-db.json:/app/flow60-local-db.json
+    restart: unless-stopped
